@@ -127,3 +127,7 @@
 30. 来源：`https://uniapp.dcloud.net.cn/tutorial/adapt.html`
 - 落地：`docs/10-页面样式与布局.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：宽屏适配策略、`rpxCalc*` 配置边界、web 专有窗体能力与断点布局回归
+
+31. 来源：`https://uniapp.dcloud.net.cn/tutorial/ssr.html`
+- 落地：`docs/01-项目结构.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：H5 SSR 工程边界、同构生命周期与 hydration 风险、`uni-ssr` 部署一致性
