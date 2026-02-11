@@ -115,3 +115,7 @@
 27. 来源：`https://uniapp.dcloud.net.cn/tutorial/syntax-jsx.html`
 - 落地：`docs/01-项目结构.md`、`docs/12-Vue组件通信与复用.md`、`docs/16-Vue3基础与迁移要点.md`、`docs/08-常见问题.md`
 - 主题：JSX/TSX 端支持范围、`@vitejs/plugin-vue-jsx` 配置与版本匹配约束
+
+28. 来源：`https://uniapp.dcloud.net.cn/tutorial/platform.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：条件编译位置与平台宏规范、样式模板注释语法、`plus` 平台能力与时机边界
