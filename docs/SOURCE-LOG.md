@@ -107,3 +107,7 @@
 25. 来源：`https://uniapp.dcloud.net.cn/tutorial/migration-to-vue3.html`
 - 落地：`docs/16-Vue3基础与迁移要点.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：Vue2->Vue3 迁移差异清单、事件/插槽/Promise 语义变化、多端构建开关约束
+
+26. 来源：`https://uniapp.dcloud.net.cn/tutorial/typescript-subject.html`
+- 落地：`docs/01-项目结构.md`、`docs/03-状态与缓存.md`、`docs/04-请求与拦截器.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：TypeScript 依赖与 `tsconfig` 基线、`lang="ts"` 组件链路、类型检查发布门禁
