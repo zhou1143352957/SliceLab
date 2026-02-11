@@ -55,3 +55,7 @@
 12. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/history.html`
 - 落地：`docs/09-App原生插件与能力.md`、`docs/06-多端差异处理.md`
 - 主题：鸿蒙支持演进背景与路线识别
+
+13. 来源：`https://uniapp.dcloud.net.cn/tutorial/syntax-js.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：uni-app JS 运行时差异、浏览器全局对象边界、App 渲染机制与兼容排查
