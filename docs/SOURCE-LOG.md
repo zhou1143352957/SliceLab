@@ -95,3 +95,7 @@
 22. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-composition-api.html`
 - 落地：`docs/15-Vue组合式API实践.md`、`docs/08-常见问题.md`
 - 主题：组合式页面显隐钩子命名边界、`vue` 与 `@dcloudio/uni-app` 的 API 导入职责划分
+
+23. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-vuex.html`
+- 落地：`docs/03-状态与缓存.md`、`docs/08-常见问题.md`
+- 主题：Vuex 注入链路（含 `nvue`）、模块化与命名空间、`action/mutation` 职责边界
