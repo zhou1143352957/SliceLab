@@ -111,3 +111,7 @@
 26. 来源：`https://uniapp.dcloud.net.cn/tutorial/typescript-subject.html`
 - 落地：`docs/01-项目结构.md`、`docs/03-状态与缓存.md`、`docs/04-请求与拦截器.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：TypeScript 依赖与 `tsconfig` 基线、`lang="ts"` 组件链路、类型检查发布门禁
+
+27. 来源：`https://uniapp.dcloud.net.cn/tutorial/syntax-jsx.html`
+- 落地：`docs/01-项目结构.md`、`docs/12-Vue组件通信与复用.md`、`docs/16-Vue3基础与迁移要点.md`、`docs/08-常见问题.md`
+- 主题：JSX/TSX 端支持范围、`@vitejs/plugin-vue-jsx` 配置与版本匹配约束
