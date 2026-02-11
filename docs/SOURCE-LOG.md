@@ -87,3 +87,7 @@
 20. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-components.html`
 - 落地：`docs/17-Vue3组件实践.md`、`docs/08-常见问题.md`
 - 主题：Vue3 组件接口声明、暴露边界与复用实践
+
+21. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-api.html`
+- 落地：`docs/15-Vue组合式API实践.md`、`docs/13-Vue API与生命周期.md`、`docs/08-常见问题.md`
+- 主题：Vue3 常用 API 时机约束、响应性工具与生命周期交互
