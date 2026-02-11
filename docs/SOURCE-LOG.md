@@ -83,3 +83,7 @@
 19. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-basics.html`
 - 落地：`docs/16-Vue3基础与迁移要点.md`、`docs/08-常见问题.md`
 - 主题：Vue3 语义差异、模板行为变化与迁移注意事项
+
+20. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-components.html`
+- 落地：`docs/17-Vue3组件实践.md`、`docs/08-常见问题.md`
+- 主题：Vue3 组件接口声明、暴露边界与复用实践

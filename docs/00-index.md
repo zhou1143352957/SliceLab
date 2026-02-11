@@ -23,6 +23,7 @@
 - `13-Vue API与生命周期.md`：页面生命周期、实例 API 与运行时调用边界
 - `15-Vue组合式API实践.md`：setup/ref/reactive/watch/composables 规范与排障
 - `16-Vue3基础与迁移要点.md`：Vue3 语法差异、模板行为变化与迁移约束
+- `17-Vue3组件实践.md`：defineProps/defineEmits/defineExpose 与组件封装规范
 
 ## 业务切片目录
 
