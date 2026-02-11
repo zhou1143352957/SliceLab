@@ -103,3 +103,7 @@
 24. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-pinia.html`
 - 落地：`docs/03-状态与缓存.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：Pinia 注入链路（含 `nvue`）、`storeToRefs` 响应性约束、App 基座升级与发布策略
+
+25. 来源：`https://uniapp.dcloud.net.cn/tutorial/migration-to-vue3.html`
+- 落地：`docs/16-Vue3基础与迁移要点.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：Vue2->Vue3 迁移差异清单、事件/插槽/Promise 语义变化、多端构建开关约束
