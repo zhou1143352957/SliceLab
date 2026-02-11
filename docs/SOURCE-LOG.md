@@ -135,3 +135,7 @@
 32. 来源：`https://uniapp.dcloud.net.cn/tutorial/nvue-outline.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/10-页面样式与布局.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：nvue 适用场景与样式边界、`renderer/nvueCompiler` 配置风险、性能组件与回归要点
+
+33. 来源：`https://uniapp.dcloud.net.cn/tutorial/nvue-css.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/10-页面样式与布局.md`、`docs/08-常见问题.md`
+- 主题：nvue CSS 语法边界、`nvueStyleCompiler` 配置与 `App.vue` 样式影响范围
