@@ -67,3 +67,7 @@
 15. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue-basics.html`
 - 落地：`docs/11-Vue基础语法.md`、`docs/08-常见问题.md`
 - 主题：Vue 基础指令、响应式与列表渲染常见问题
+
+16. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue-components.html`
+- 落地：`docs/12-Vue组件通信与复用.md`、`docs/08-常见问题.md`
+- 主题：组件注册、props/emits、ref 与插槽语义、受限能力边界
