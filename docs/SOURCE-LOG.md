@@ -119,3 +119,7 @@
 28. 来源：`https://uniapp.dcloud.net.cn/tutorial/platform.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：条件编译位置与平台宏规范、样式模板注释语法、`plus` 平台能力与时机边界
+
+29. 来源：`https://uniapp.dcloud.net.cn/tutorial/CORS.html`
+- 落地：`docs/04-请求与拦截器.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：H5 跨域边界、CORS/预检策略、浏览器内核链路与多端请求差异
