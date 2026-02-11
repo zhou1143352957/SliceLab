@@ -71,3 +71,7 @@
 16. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue-components.html`
 - 落地：`docs/12-Vue组件通信与复用.md`、`docs/08-常见问题.md`
 - 主题：组件注册、props/emits、ref 与插槽语义、受限能力边界
+
+17. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue-api.html`
+- 落地：`docs/13-Vue API与生命周期.md`、`docs/08-常见问题.md`
+- 主题：页面生命周期、实例 API 与副作用管理边界
