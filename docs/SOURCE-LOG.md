@@ -99,3 +99,7 @@
 23. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-vuex.html`
 - 落地：`docs/03-状态与缓存.md`、`docs/08-常见问题.md`
 - 主题：Vuex 注入链路（含 `nvue`）、模块化与命名空间、`action/mutation` 职责边界
+
+24. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-pinia.html`
+- 落地：`docs/03-状态与缓存.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：Pinia 注入链路（含 `nvue`）、`storeToRefs` 响应性约束、App 基座升级与发布策略
