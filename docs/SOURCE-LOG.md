@@ -63,3 +63,7 @@
 14. 来源：`https://uniapp.dcloud.net.cn/tutorial/syntax-css.html`
 - 落地：`docs/10-页面样式与布局.md`、`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：CSS 语法边界、单位规则、`vue/nvue` 渲染差异与跨端样式排障
+
+15. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue-basics.html`
+- 落地：`docs/11-Vue基础语法.md`、`docs/08-常见问题.md`
+- 主题：Vue 基础指令、响应式与列表渲染常见问题
