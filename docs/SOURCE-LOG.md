@@ -123,3 +123,7 @@
 29. 来源：`https://uniapp.dcloud.net.cn/tutorial/CORS.html`
 - 落地：`docs/04-请求与拦截器.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：H5 跨域边界、CORS/预检策略、浏览器内核链路与多端请求差异
+
+30. 来源：`https://uniapp.dcloud.net.cn/tutorial/adapt.html`
+- 落地：`docs/10-页面样式与布局.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：宽屏适配策略、`rpxCalc*` 配置边界、web 专有窗体能力与断点布局回归
