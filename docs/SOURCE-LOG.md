@@ -39,3 +39,7 @@
 8. 来源：`https://uniapp.dcloud.net.cn/tutorial/page-json.html`
 - 落地：`docs/01-项目结构.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：json 导入路径、别名语义、条件编译差异、按需解构
+
+9. 来源：`https://uniapp.dcloud.net.cn/tutorial/page-static-assets.html`
+- 落地：`docs/05-组件与样式规范.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：static 与非 static 资源引用规则、构建产物差异、端差异注意事项
