@@ -79,3 +79,7 @@
 18. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue-composition-api.html`
 - 落地：`docs/15-Vue组合式API实践.md`、`docs/08-常见问题.md`
 - 主题：组合式 API 使用边界、响应性陷阱与副作用管理
+
+19. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-basics.html`
+- 落地：`docs/16-Vue3基础与迁移要点.md`、`docs/08-常见问题.md`
+- 主题：Vue3 语义差异、模板行为变化与迁移注意事项

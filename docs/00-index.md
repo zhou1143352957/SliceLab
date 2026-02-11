@@ -22,6 +22,7 @@
 - `12-Vue组件通信与复用.md`：props/emits/slot 语义边界与组件复用策略
 - `13-Vue API与生命周期.md`：页面生命周期、实例 API 与运行时调用边界
 - `15-Vue组合式API实践.md`：setup/ref/reactive/watch/composables 规范与排障
+- `16-Vue3基础与迁移要点.md`：Vue3 语法差异、模板行为变化与迁移约束
 
 ## 业务切片目录
 
