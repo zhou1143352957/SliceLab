@@ -91,3 +91,7 @@
 21. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-api.html`
 - 落地：`docs/15-Vue组合式API实践.md`、`docs/13-Vue API与生命周期.md`、`docs/08-常见问题.md`
 - 主题：Vue3 常用 API 时机约束、响应性工具与生命周期交互
+
+22. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue3-composition-api.html`
+- 落地：`docs/15-Vue组合式API实践.md`、`docs/08-常见问题.md`
+- 主题：组合式页面显隐钩子命名边界、`vue` 与 `@dcloudio/uni-app` 的 API 导入职责划分
