@@ -75,3 +75,7 @@
 17. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue-api.html`
 - 落地：`docs/13-Vue API与生命周期.md`、`docs/08-常见问题.md`
 - 主题：页面生命周期、实例 API 与副作用管理边界
+
+18. 来源：`https://uniapp.dcloud.net.cn/tutorial/vue-composition-api.html`
+- 落地：`docs/15-Vue组合式API实践.md`、`docs/08-常见问题.md`
+- 主题：组合式 API 使用边界、响应性陷阱与副作用管理

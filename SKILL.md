@@ -34,6 +34,7 @@ description: Uni-app 项目文档切片检索与执行规范。用于处理 uni-
 - Vue 指令与响应式基础：`docs/11-Vue基础语法.md`
 - Vue 组件通信与插槽复用：`docs/12-Vue组件通信与复用.md`
 - Vue API 与生命周期：`docs/13-Vue API与生命周期.md`
+- Vue 组合式 API 实践：`docs/15-Vue组合式API实践.md`
 - 业务实体与状态规则：`docs/business/01-业务模型模板.md`（或对应模块文件）
 - 接口入参出参与错误码：`docs/business/02-接口契约模板.md`（或对应模块文件）
 - 页面与业务分支流程：`docs/business/03-业务流程模板.md`（或对应模块文件）
