@@ -43,3 +43,15 @@
 9. 来源：`https://uniapp.dcloud.net.cn/tutorial/page-static-assets.html`
 - 落地：`docs/05-组件与样式规范.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：static 与非 static 资源引用规则、构建产物差异、端差异注意事项
+
+10. 来源：`https://uniapp.dcloud.net.cn/plugin/native-plugin.html`
+- 落地：`docs/09-App原生插件与能力.md`、`docs/06-多端差异处理.md`
+- 主题：Android/iOS 原生插件接入、`nativeplugins` 目录、`manifest` 配置、基座调试与云打包
+
+11. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/native-api.html`
+- 落地：`docs/09-App原生插件与能力.md`、`docs/06-多端差异处理.md`
+- 主题：鸿蒙端能力接入路线、UTS 方向与平台边界
+
+12. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/history.html`
+- 落地：`docs/09-App原生插件与能力.md`、`docs/06-多端差异处理.md`
+- 主题：鸿蒙支持演进背景与路线识别
