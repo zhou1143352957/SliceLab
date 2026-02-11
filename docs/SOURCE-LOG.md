@@ -131,3 +131,7 @@
 31. 来源：`https://uniapp.dcloud.net.cn/tutorial/ssr.html`
 - 落地：`docs/01-项目结构.md`、`docs/06-多端差异处理.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
 - 主题：H5 SSR 工程边界、同构生命周期与 hydration 风险、`uni-ssr` 部署一致性
+
+32. 来源：`https://uniapp.dcloud.net.cn/tutorial/nvue-outline.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/10-页面样式与布局.md`、`docs/07-打包发布.md`、`docs/08-常见问题.md`
+- 主题：nvue 适用场景与样式边界、`renderer/nvueCompiler` 配置风险、性能组件与回归要点
