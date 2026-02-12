@@ -147,3 +147,7 @@
 35. 来源：`https://uniapp.dcloud.net.cn/tutorial/nvue-event.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：nvue 事件能力边界、iOS 专属事件穿透属性、`longpress/appear/disappear` 事件对象兼容要点
+
+36. 来源：`https://uniapp.dcloud.net.cn/tutorial/use-html5plus.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：uni-app 中 HTML5+ 调用边界、`plusready` 监听误区、`plus.globalEvent` 事件监听方式
