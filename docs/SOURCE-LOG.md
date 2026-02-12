@@ -215,3 +215,7 @@
 52. 来源：`https://uniapp.dcloud.net.cn/tutorial/mp-weixin-plugin-dev.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：小程序插件开发约束（`plugin/plugin.json`、`--plugin` 编译参数、插件宏与产物保留策略）
+
+53. 来源：`https://uniapp.dcloud.net.cn/tutorial/err-spec.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：统一错误规范（`UniError/SourceError/UniAggregateError`、`errSubject` 命名、7位错误码分段与平台尾段规则）
