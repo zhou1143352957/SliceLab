@@ -143,3 +143,7 @@
 34. 来源：`https://uniapp.dcloud.net.cn/tutorial/nvue-api.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：nvue 与 vue 通讯方式、plus API 调用时机边界、不支持 uni API 的替代实现策略
+
+35. 来源：`https://uniapp.dcloud.net.cn/tutorial/nvue-event.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：nvue 事件能力边界、iOS 专属事件穿透属性、`longpress/appear/disappear` 事件对象兼容要点
