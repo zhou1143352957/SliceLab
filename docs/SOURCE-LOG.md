@@ -203,3 +203,7 @@
 49. 来源：`https://uniapp.dcloud.net.cn/tutorial/miniprogram-subject.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：小程序平台差异（`usingComponents` 平台键、`wxs/sjs/filter` 语法边界、`MP-*` 条件编译约束）
+
+50. 来源：`https://uniapp.dcloud.net.cn/tutorial/miniprogram-subcontract-asynchrony.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：小程序分包异步化约束（`lazyCodeLoading/componentPlaceholder`、`vue3` 边界、跨分包 `require` 规范）
