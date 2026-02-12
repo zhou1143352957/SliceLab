@@ -187,3 +187,7 @@
 45. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/built-in-module.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：鸿蒙内置模块能力边界、地图 key 配置链路、WebView 通讯迁移策略
+
+46. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/url-scheme.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：鸿蒙 URL Scheme（Deep Linking/App Linking）配置约束、AGC 域名认证与拉起参数处理
