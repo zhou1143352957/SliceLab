@@ -39,11 +39,10 @@ function toErrorMessage(error: unknown, fallback: string): string {
   return fallback
 }
 
-// 选择单张图片，作为切片流程输入。
-function chooseSingleImage(): Promise<ChooseImageResultLike> {
+function chooseImages(count: number): Promise<ChooseImageResultLike> {
   return new Promise((resolve, reject) => {
     uni.chooseImage({
-      count: 1,
+      count,
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: (res) => resolve(res as ChooseImageResultLike),
@@ -63,17 +62,11 @@ function readImageInfo(src: string): Promise<ImageInfoResultLike> {
   })
 }
 
-export async function pickSingleImage(): Promise<PickedImageInfo> {
-  const selected = await chooseSingleImage()
-  const tempFilePath = selected.tempFilePaths?.[0]
-
-  if (!tempFilePath) {
-    throw new Error('未获取到图片路径，请重试')
-  }
-
+async function buildPickedImageInfo(
+  tempFilePath: string,
+  fileMeta?: ChooseImageFileLike
+): Promise<PickedImageInfo> {
   const info = await readImageInfo(tempFilePath)
-  const fileMeta = selected.tempFiles?.[0]
-
   return {
     tempFilePath,
     width: info.width,
@@ -81,4 +74,31 @@ export async function pickSingleImage(): Promise<PickedImageInfo> {
     size: fileMeta?.size,
     type: fileMeta?.type,
   }
+}
+
+export async function pickImages(maxCount = 9): Promise<PickedImageInfo[]> {
+  const selected = await chooseImages(Math.max(1, maxCount))
+  const tempFilePaths = selected.tempFilePaths?.filter((path): path is string => !!path) ?? []
+
+  if (!tempFilePaths.length) {
+    throw new Error('未获取到图片路径，请重试')
+  }
+
+  const pickedImages = await Promise.all(
+    tempFilePaths.map((tempFilePath, index) =>
+      buildPickedImageInfo(tempFilePath, selected.tempFiles?.[index])
+    )
+  )
+
+  return pickedImages
+}
+
+// 兼容单图流程：复用多选实现并返回第一张。
+export async function pickSingleImage(): Promise<PickedImageInfo> {
+  const images = await pickImages(1)
+  const firstImage = images[0]
+  if (!firstImage) {
+    throw new Error('未获取到图片路径，请重试')
+  }
+  return firstImage
 }

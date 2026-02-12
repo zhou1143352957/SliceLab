@@ -4,6 +4,7 @@ import { createZipBlob, type ZipEntry } from '@/utils/zip'
 export interface ExportSliceOptions {
   slices: SliceResult[]
   baseName?: string
+  fileNameBuilder?: (slice: SliceResult, position: number) => string
 }
 
 export interface ExportSliceSummary {
@@ -32,6 +33,11 @@ function buildSliceFileName(baseName: string, slice: SliceResult): string {
 
 function buildZipFileName(baseName: string): string {
   return `${baseName}-all.zip`
+}
+
+function sanitizeEntryName(fileName: string, fallback: string): string {
+  const value = fileName.trim()
+  return value.length ? value : fallback
 }
 
 function triggerH5Download(filePath: string, fileName: string): void {
@@ -156,13 +162,16 @@ async function readH5FileBytes(filePath: string): Promise<Uint8Array> {
 // H5 端导出为 Zip，规避浏览器对多文件自动下载的限制。
 async function exportSlicesForH5(
   slices: SliceResult[],
-  baseName: string
+  baseName: string,
+  fileNameBuilder?: (slice: SliceResult, position: number) => string
 ): Promise<ExportSliceSummary> {
   const summary = createEmptySummary(slices.length)
   const zipEntries: ZipEntry[] = []
 
-  for (const slice of slices) {
-    const fileName = buildSliceFileName(baseName, slice)
+  for (let i = 0; i < slices.length; i += 1) {
+    const slice = slices[i]
+    const defaultFileName = buildSliceFileName(baseName, slice)
+    const fileName = sanitizeEntryName(fileNameBuilder?.(slice, i) ?? defaultFileName, defaultFileName)
     try {
       const bytes = await readH5FileBytes(slice.tempFilePath)
       zipEntries.push({
@@ -240,7 +249,7 @@ export async function exportSliceResults(
 
   const baseName = sanitizeBaseName(options.baseName)
   // #ifdef H5
-  return exportSlicesForH5(slices, baseName)
+  return exportSlicesForH5(slices, baseName, options.fileNameBuilder)
   // #endif
 
   const summary = createEmptySummary(slices.length)
