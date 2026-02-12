@@ -191,3 +191,7 @@
 46. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/url-scheme.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：鸿蒙 URL Scheme（Deep Linking/App Linking）配置约束、AGC 域名认证与拉起参数处理
+
+47. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/open-app.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：鸿蒙外部拉起调用链路（`canOpenURL/openSchema`）、`querySchemes` 白名单约束、元服务唤起封装策略
