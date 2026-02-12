@@ -179,3 +179,7 @@
 43. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/native-api.html`（复核）
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：鸿蒙三方 API 调用边界（ohpm 仅限 `utssdk/app-harmony`）、UTS 插件 `arkts` 配置与命名约束
+
+44. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/native-component.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：鸿蒙原生组件接入链路（`ets/index.uts/embed`）、`tag/options/event` 约束与 `nodeRenderType` 叠放场景
