@@ -183,3 +183,7 @@
 44. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/native-component.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：鸿蒙原生组件接入链路（`ets/index.uts/embed`）、`tag/options/event` 约束与 `nodeRenderType` 叠放场景
+
+45. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/built-in-module.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：鸿蒙内置模块能力边界、地图 key 配置链路、WebView 通讯迁移策略
