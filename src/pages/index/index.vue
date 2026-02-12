@@ -5,6 +5,7 @@
       <text class="subtitle">上传图片 -> 输入行列 -> 生成切片预览</text>
     </view>
 
+    <!-- @vue-ignore -->
     <button class="pick-button" type="primary" :loading="isPicking" @click="onPickImage">
       选择图片
     </button>
@@ -37,6 +38,7 @@
         </view>
       </view>
 
+      <!-- @vue-ignore -->
       <button class="slice-button" type="primary" :loading="isSlicing" @click="onSliceImage">
         生成切片
       </button>
@@ -47,6 +49,7 @@
         <text class="slice-list-title">切片预览</text>
         <view class="slice-actions">
           <text class="slice-list-count">共 {{ sliceResults.length }} 张</text>
+          <!-- @vue-ignore -->
           <button
             class="export-button"
             size="mini"

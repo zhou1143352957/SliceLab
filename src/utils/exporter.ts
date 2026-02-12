@@ -1,4 +1,5 @@
 import type { SliceResult } from '@/utils/image'
+import { createZipBlob, type ZipEntry } from '@/utils/zip'
 
 export interface ExportSliceOptions {
   slices: SliceResult[]
@@ -29,6 +30,10 @@ function buildSliceFileName(baseName: string, slice: SliceResult): string {
   return `${baseName}-r${slice.row + 1}-c${slice.col + 1}-${slice.index + 1}.png`
 }
 
+function buildZipFileName(baseName: string): string {
+  return `${baseName}-all.zip`
+}
+
 function triggerH5Download(filePath: string, fileName: string): void {
   const link = document.createElement('a')
   link.href = filePath
@@ -37,6 +42,28 @@ function triggerH5Download(filePath: string, fileName: string): void {
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
+}
+
+function triggerH5BlobDownload(blob: Blob, fileName: string): void {
+  const objectUrl = URL.createObjectURL(blob)
+  try {
+    triggerH5Download(objectUrl, fileName)
+  } finally {
+    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
+  }
+}
+
+function createEmptySummary(total: number): ExportSliceSummary {
+  return {
+    total,
+    successCount: 0,
+    failedCount: 0,
+    failedIndexes: [],
+    permissionDeniedCount: 0,
+    saveFailedCount: 0,
+    permissionDenied: false,
+    firstErrorMessage: '',
+  }
 }
 
 function saveImageToAlbum(filePath: string): Promise<void> {
@@ -52,7 +79,7 @@ function saveImageToAlbum(filePath: string): Promise<void> {
 function callUniGetSetting(): Promise<UniSaveResultLike> {
   return new Promise((resolve, reject) => {
     uni.getSetting({
-      success: (res) => resolve(res as UniSaveResultLike),
+      success: (res) => resolve(res as unknown as UniSaveResultLike),
       fail: (error) => reject(error),
     })
   })
@@ -71,7 +98,7 @@ function callUniAuthorize(scope: string): Promise<void> {
 function callUniOpenSetting(): Promise<UniSaveResultLike> {
   return new Promise((resolve, reject) => {
     uni.openSetting({
-      success: (res) => resolve(res as UniSaveResultLike),
+      success: (res) => resolve(res as unknown as UniSaveResultLike),
       fail: (error) => reject(error),
     })
   })
@@ -116,6 +143,50 @@ function isPermissionDeniedError(errorMessage: string): boolean {
 function markSliceFailed(summary: ExportSliceSummary, index: number): void {
   summary.failedCount += 1
   summary.failedIndexes.push(index)
+}
+
+async function readH5FileBytes(filePath: string): Promise<Uint8Array> {
+  const response = await fetch(filePath)
+  if (!response.ok) {
+    throw new Error(`切片读取失败：${response.status}`)
+  }
+  return new Uint8Array(await response.arrayBuffer())
+}
+
+// H5 端导出为 Zip，规避浏览器对多文件自动下载的限制。
+async function exportSlicesForH5(
+  slices: SliceResult[],
+  baseName: string
+): Promise<ExportSliceSummary> {
+  const summary = createEmptySummary(slices.length)
+  const zipEntries: ZipEntry[] = []
+
+  for (const slice of slices) {
+    const fileName = buildSliceFileName(baseName, slice)
+    try {
+      const bytes = await readH5FileBytes(slice.tempFilePath)
+      zipEntries.push({
+        fileName,
+        data: bytes,
+      })
+      summary.successCount += 1
+    } catch (error) {
+      const errorMessage = normalizeErrorMessage(error)
+      if (!summary.firstErrorMessage) {
+        summary.firstErrorMessage = errorMessage
+      }
+      summary.saveFailedCount += 1
+      markSliceFailed(summary, slice.index)
+    }
+  }
+
+  if (!zipEntries.length) {
+    throw new Error(summary.firstErrorMessage || '无可导出的切片文件')
+  }
+
+  const zipBlob = createZipBlob(zipEntries)
+  triggerH5BlobDownload(zipBlob, buildZipFileName(baseName))
+  return summary
 }
 
 function markRemainingAsFailed(
@@ -168,28 +239,18 @@ export async function exportSliceResults(
   }
 
   const baseName = sanitizeBaseName(options.baseName)
-  const summary: ExportSliceSummary = {
-    total: slices.length,
-    successCount: 0,
-    failedCount: 0,
-    failedIndexes: [],
-    permissionDeniedCount: 0,
-    saveFailedCount: 0,
-    permissionDenied: false,
-    firstErrorMessage: '',
-  }
+  // #ifdef H5
+  return exportSlicesForH5(slices, baseName)
+  // #endif
+
+  const summary = createEmptySummary(slices.length)
 
   await ensureMpAlbumPermission()
 
   for (let i = 0; i < slices.length; i += 1) {
     const slice = slices[i]
-    const fileName = buildSliceFileName(baseName, slice)
 
     try {
-      // #ifdef H5
-      triggerH5Download(slice.tempFilePath, fileName)
-      // #endif
-
       // #ifndef H5
       await saveImageToAlbum(slice.tempFilePath)
       // #endif
