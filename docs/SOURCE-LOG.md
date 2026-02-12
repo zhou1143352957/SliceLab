@@ -207,3 +207,7 @@
 50. 来源：`https://uniapp.dcloud.net.cn/tutorial/miniprogram-subcontract-asynchrony.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：小程序分包异步化约束（`lazyCodeLoading/componentPlaceholder`、`vue3` 边界、跨分包 `require` 规范）
+
+51. 来源：`https://uniapp.dcloud.net.cn/tutorial/mp-weixin-plugin.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：小程序插件接入约束（`plugins/dynamicLib` 声明、`plugin://` 路径、分包插件限制与权限配置）
