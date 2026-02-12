@@ -155,3 +155,7 @@
 37. 来源：`https://uniapp.dcloud.net.cn/tutorial/native-js.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：`Native.js` 能力边界、Android/iOS 分支隔离、真机验证与插件替代策略
+
+38. 来源：`https://uniapp.dcloud.net.cn/tutorial/renderjs.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：`renderjs` 适用端边界、逻辑层通信方式、内联脚本约束与性能注意事项
