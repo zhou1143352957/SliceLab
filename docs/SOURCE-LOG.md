@@ -159,3 +159,7 @@
 38. 来源：`https://uniapp.dcloud.net.cn/tutorial/renderjs.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：`renderjs` 适用端边界、逻辑层通信方式、内联脚本约束与性能注意事项
+
+39. 来源：`https://uniapp.dcloud.net.cn/tutorial/app-useragent.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：App User Agent 配置策略、端定制覆盖关系、云打包生效边界与排障要点
