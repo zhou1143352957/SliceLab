@@ -175,3 +175,7 @@
 42. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/runbuild.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：鸿蒙运行与发行流程、DevEco 依赖、签名配置与构建排障策略
+
+43. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/native-api.html`（复核）
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：鸿蒙三方 API 调用边界（ohpm 仅限 `utssdk/app-harmony`）、UTS 插件 `arkts` 配置与命名约束
