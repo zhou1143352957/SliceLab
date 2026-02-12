@@ -195,3 +195,7 @@
 47. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/open-app.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：鸿蒙外部拉起调用链路（`canOpenURL/openSchema`）、`querySchemes` 白名单约束、元服务唤起封装策略
+
+48. 来源：`https://uniapp.dcloud.net.cn/tutorial/mp-harmony/payment.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：鸿蒙支付配置边界（`uni-pay` 华为支付、`clientType` 分端约束、密钥与回调一致性）
