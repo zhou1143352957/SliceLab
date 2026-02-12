@@ -167,3 +167,7 @@
 40. 来源：`https://uniapp.dcloud.net.cn/tutorial/app-blureffect.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：App 毛玻璃配置边界、`app-vue` 适用范围、样式限制与版本门槛
+
+41. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/intro.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：鸿蒙接入前置条件（`HBuilderX 4.27+`、`vue3`）与专题化能力路线
