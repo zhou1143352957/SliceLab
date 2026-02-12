@@ -10,6 +10,10 @@ export interface ExportSliceSummary {
   successCount: number
   failedCount: number
   failedIndexes: number[]
+  permissionDeniedCount: number
+  saveFailedCount: number
+  permissionDenied: boolean
+  firstErrorMessage: string
 }
 
 interface UniSaveResultLike {
@@ -73,6 +77,67 @@ function callUniOpenSetting(): Promise<UniSaveResultLike> {
   })
 }
 
+function callUniShowModal(
+  title: string,
+  content: string
+): Promise<{ confirm: boolean; cancel: boolean }> {
+  return new Promise((resolve, reject) => {
+    uni.showModal({
+      title,
+      content,
+      success: (res) => resolve(res),
+      fail: (error) => reject(error),
+    })
+  })
+}
+
+function normalizeErrorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message
+  if (typeof error === 'string') return error
+
+  const maybeMsg = (error as { errMsg?: string } | null)?.errMsg
+  if (typeof maybeMsg === 'string' && maybeMsg.length) return maybeMsg
+
+  return 'unknown-error'
+}
+
+function isPermissionDeniedError(errorMessage: string): boolean {
+  const value = errorMessage.toLowerCase()
+  return (
+    value.includes('auth deny') ||
+    value.includes('permission denied') ||
+    value.includes('authorize') ||
+    value.includes('denied') ||
+    value.includes('无权限') ||
+    value.includes('权限')
+  )
+}
+
+function markSliceFailed(summary: ExportSliceSummary, index: number): void {
+  summary.failedCount += 1
+  summary.failedIndexes.push(index)
+}
+
+function markRemainingAsFailed(
+  summary: ExportSliceSummary,
+  slices: SliceResult[],
+  fromPosition: number
+): void {
+  for (let i = fromPosition; i < slices.length; i += 1) {
+    markSliceFailed(summary, slices[i].index)
+  }
+}
+
+// App 端导出失败后统一提示用户到系统设置开启权限。
+async function promptAppPermissionGuide(): Promise<void> {
+  // #ifdef APP-PLUS
+  await callUniShowModal(
+    '需要相册权限',
+    '请在系统设置中为当前应用开启相册权限后重试导出。'
+  )
+  // #endif
+}
+
 // 微信小程序导出前确保有相册写入权限。
 async function ensureMpAlbumPermission(): Promise<void> {
   // #ifdef MP-WEIXIN
@@ -108,11 +173,16 @@ export async function exportSliceResults(
     successCount: 0,
     failedCount: 0,
     failedIndexes: [],
+    permissionDeniedCount: 0,
+    saveFailedCount: 0,
+    permissionDenied: false,
+    firstErrorMessage: '',
   }
 
   await ensureMpAlbumPermission()
 
-  for (const slice of slices) {
+  for (let i = 0; i < slices.length; i += 1) {
+    const slice = slices[i]
     const fileName = buildSliceFileName(baseName, slice)
 
     try {
@@ -125,9 +195,23 @@ export async function exportSliceResults(
       // #endif
 
       summary.successCount += 1
-    } catch {
-      summary.failedCount += 1
-      summary.failedIndexes.push(slice.index)
+    } catch (error) {
+      const errorMessage = normalizeErrorMessage(error)
+      if (!summary.firstErrorMessage) {
+        summary.firstErrorMessage = errorMessage
+      }
+
+      if (isPermissionDeniedError(errorMessage)) {
+        summary.permissionDenied = true
+        summary.permissionDeniedCount += 1
+        markSliceFailed(summary, slice.index)
+        markRemainingAsFailed(summary, slices, i + 1)
+        await promptAppPermissionGuide()
+        break
+      }
+
+      summary.saveFailedCount += 1
+      markSliceFailed(summary, slice.index)
     }
   }
 

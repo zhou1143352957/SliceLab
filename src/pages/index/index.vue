@@ -178,12 +178,19 @@ async function onExportSlices() {
       baseName: 'slice',
     })
 
+    if (summary.permissionDenied) {
+      const message = '导出失败：缺少相册权限，请授权后重试'
+      errorMessage.value = message
+      uni.showToast({ title: message, icon: 'none', duration: 2600 })
+      return
+    }
+
     if (summary.failedCount === 0) {
       uni.showToast({ title: `导出成功（${summary.successCount}张）`, icon: 'success' })
       return
     }
 
-    const message = `导出完成：成功 ${summary.successCount}，失败 ${summary.failedCount}`
+    const message = `导出完成：成功 ${summary.successCount}，保存失败 ${summary.saveFailedCount}`
     errorMessage.value = message
     uni.showToast({ title: message, icon: 'none', duration: 2400 })
   } catch (error) {
