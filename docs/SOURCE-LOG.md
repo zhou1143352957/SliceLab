@@ -199,3 +199,7 @@
 48. 来源：`https://uniapp.dcloud.net.cn/tutorial/mp-harmony/payment.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：鸿蒙支付配置边界（`uni-pay` 华为支付、`clientType` 分端约束、密钥与回调一致性）
+
+49. 来源：`https://uniapp.dcloud.net.cn/tutorial/miniprogram-subject.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：小程序平台差异（`usingComponents` 平台键、`wxs/sjs/filter` 语法边界、`MP-*` 条件编译约束）
