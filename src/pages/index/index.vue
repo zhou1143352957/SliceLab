@@ -45,7 +45,18 @@
     <view v-if="sliceResults.length" class="slice-list">
       <view class="slice-list-header">
         <text class="slice-list-title">切片预览</text>
-        <text class="slice-list-count">共 {{ sliceResults.length }} 张</text>
+        <view class="slice-actions">
+          <text class="slice-list-count">共 {{ sliceResults.length }} 张</text>
+          <button
+            class="export-button"
+            size="mini"
+            type="primary"
+            :loading="isExporting"
+            @click="onExportSlices"
+          >
+            导出全部
+          </button>
+        </view>
       </view>
       <view class="slice-grid">
         <view v-for="slice in sliceResults" :key="slice.index" class="slice-item">
@@ -73,9 +84,11 @@ import {
   validateSliceParams,
   type SliceResult,
 } from '@/utils/image'
+import { exportSliceResults } from '@/utils/exporter'
 
 const isPicking = ref(false)
 const isSlicing = ref(false)
+const isExporting = ref(false)
 const errorMessage = ref('')
 const imageInfo = ref<PickedImageInfo | null>(null)
 const rowsInput = ref('2')
@@ -149,6 +162,36 @@ async function onSliceImage() {
     uni.showToast({ title: message, icon: 'none', duration: 2200 })
   } finally {
     isSlicing.value = false
+  }
+}
+
+// 导出切片：H5 走下载，微信和 App 走保存到相册。
+async function onExportSlices() {
+  if (!sliceResults.value.length || isExporting.value) return
+
+  isExporting.value = true
+  errorMessage.value = ''
+
+  try {
+    const summary = await exportSliceResults({
+      slices: sliceResults.value,
+      baseName: 'slice',
+    })
+
+    if (summary.failedCount === 0) {
+      uni.showToast({ title: `导出成功（${summary.successCount}张）`, icon: 'success' })
+      return
+    }
+
+    const message = `导出完成：成功 ${summary.successCount}，失败 ${summary.failedCount}`
+    errorMessage.value = message
+    uni.showToast({ title: message, icon: 'none', duration: 2400 })
+  } catch (error) {
+    const message = error instanceof Error ? error.message : '导出失败，请重试'
+    errorMessage.value = message
+    uni.showToast({ title: message, icon: 'none', duration: 2200 })
+  } finally {
+    isExporting.value = false
   }
 }
 </script>
@@ -267,6 +310,12 @@ async function onSliceImage() {
   margin-bottom: 16rpx;
 }
 
+.slice-actions {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
 .slice-list-title {
   font-size: 30rpx;
   font-weight: 600;
@@ -276,6 +325,10 @@ async function onSliceImage() {
 .slice-list-count {
   font-size: 24rpx;
   color: #6b7280;
+}
+
+.export-button {
+  margin: 0;
 }
 
 .slice-grid {
