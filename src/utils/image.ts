@@ -30,6 +30,11 @@ export interface SliceImageByCanvasOptions {
   componentInstance?: unknown
 }
 
+export interface ImageSizeLike {
+  width: number
+  height: number
+}
+
 interface CanvasToTempFilePathResultLike {
   tempFilePath: string
 }
@@ -67,6 +72,36 @@ export function validateSliceParams(rows: number, cols: number, gap = 0): void {
   assertPositiveInteger(rows, 'rows')
   assertPositiveInteger(cols, 'cols')
   assertNonNegativeInteger(gap, 'gap')
+}
+
+// 批量切片前做像素规模保护，避免一次性处理超大图片导致内存峰值过高。
+export function validateBatchSliceLoad(
+  images: ImageSizeLike[],
+  maxSingleImagePixels: number,
+  maxTotalPixels: number
+): void {
+  if (!images.length) {
+    throw new Error('暂无可切片的图片')
+  }
+
+  assertPositiveInteger(maxSingleImagePixels, 'maxSingleImagePixels')
+  assertPositiveInteger(maxTotalPixels, 'maxTotalPixels')
+
+  let totalPixels = 0
+  for (const image of images) {
+    assertPositiveInteger(image.width, 'imageWidth')
+    assertPositiveInteger(image.height, 'imageHeight')
+
+    const pixels = image.width * image.height
+    if (pixels > maxSingleImagePixels) {
+      throw new Error(`单张图片像素过大（${image.width}x${image.height}），请压缩后重试`)
+    }
+    totalPixels += pixels
+  }
+
+  if (totalPixels > maxTotalPixels) {
+    throw new Error('本次批量图片总像素过大，请减少图片数量或压缩后重试')
+  }
 }
 
 // 构建切片矩形，默认按“从上到下、从左到右”顺序输出。

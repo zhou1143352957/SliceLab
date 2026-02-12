@@ -81,20 +81,21 @@
     </view>
 
     <canvas
-      v-if="canvasSize"
+      v-if="activeCanvasSize"
       class="work-canvas"
       canvas-id="slice-work-canvas"
-      :style="{ width: `${canvasSize.width}px`, height: `${canvasSize.height}px` }"
+      :style="{ width: `${activeCanvasSize.width}px`, height: `${activeCanvasSize.height}px` }"
     />
   </view>
 </template>
 
 <script setup lang="ts">
-import { computed, getCurrentInstance, ref } from 'vue'
+import { computed, getCurrentInstance, nextTick, ref } from 'vue'
 
 import { pickImages, type PickedImageInfo } from '@/utils/image-picker'
 import {
   sliceImageByCanvas,
+  validateBatchSliceLoad,
   validateSliceParams,
   type SliceResult,
 } from '@/utils/image'
@@ -109,6 +110,7 @@ const rowsInput = ref('2')
 const colsInput = ref('2')
 const gapInput = ref('0')
 const sliceGroups = ref<SliceGroup[]>([])
+const activeCanvasSize = ref<{ width: number; height: number } | null>(null)
 const componentInstance = getCurrentInstance()?.proxy
 
 interface SliceGroup {
@@ -116,18 +118,12 @@ interface SliceGroup {
   slices: SliceResult[]
 }
 
-const coverImage = computed(() => pickedImages.value[0] ?? null)
+const MAX_SINGLE_IMAGE_PIXELS = 24_000_000
+const MAX_TOTAL_IMAGE_PIXELS = 80_000_000
+const BATCH_SLICE_YIELD_INTERVAL = 2
+const BATCH_SLICE_YIELD_MS = 16
 
-const canvasSize = computed(() => {
-  if (!pickedImages.value.length) return null
-  let width = 0
-  let height = 0
-  for (const image of pickedImages.value) {
-    if (image.width > width) width = image.width
-    if (image.height > height) height = image.height
-  }
-  return { width, height }
-})
+const coverImage = computed(() => pickedImages.value[0] ?? null)
 
 const totalSliceCount = computed(() =>
   sliceGroups.value.reduce((total, group) => total + group.slices.length, 0)
@@ -143,6 +139,12 @@ function buildBatchEntryName(imageIndex: number, slice: SliceResult): string {
   return `image-${imageIndex + 1}/slice-r${slice.row + 1}-c${slice.col + 1}-${slice.index + 1}.png`
 }
 
+function waitForTaskBreak(delay = BATCH_SLICE_YIELD_MS): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), delay)
+  })
+}
+
 // 选择多张图片并读取基础信息，供后续批量切片与预览使用。
 async function onPickImage() {
   if (isPicking.value) return
@@ -154,6 +156,7 @@ async function onPickImage() {
     const result = await pickImages(9)
     pickedImages.value = result
     sliceGroups.value = []
+    activeCanvasSize.value = null
     uni.showToast({ title: `已选择 ${result.length} 张`, icon: 'success' })
   } catch (error) {
     const message = error instanceof Error ? error.message : '图片选择失败，请重试'
@@ -174,6 +177,7 @@ async function onSliceImage() {
 
   try {
     validateSliceParams(rows, cols, gap)
+    validateBatchSliceLoad(pickedImages.value, MAX_SINGLE_IMAGE_PIXELS, MAX_TOTAL_IMAGE_PIXELS)
   } catch (error) {
     const message = error instanceof Error ? error.message : '切片参数不合法'
     errorMessage.value = message
@@ -189,6 +193,9 @@ async function onSliceImage() {
     const groups: SliceGroup[] = []
     for (let i = 0; i < pickedImages.value.length; i += 1) {
       const image = pickedImages.value[i]
+      activeCanvasSize.value = { width: image.width, height: image.height }
+      await nextTick()
+
       const slices = await sliceImageByCanvas({
         canvasId: 'slice-work-canvas',
         imagePath: image.tempFilePath,
@@ -202,6 +209,10 @@ async function onSliceImage() {
         componentInstance,
       })
       groups.push({ imageIndex: i, slices })
+
+      if ((i + 1) % BATCH_SLICE_YIELD_INTERVAL === 0) {
+        await waitForTaskBreak()
+      }
     }
 
     sliceGroups.value = groups
@@ -212,6 +223,7 @@ async function onSliceImage() {
     errorMessage.value = message
     uni.showToast({ title: message, icon: 'none', duration: 2200 })
   } finally {
+    activeCanvasSize.value = null
     isSlicing.value = false
   }
 }
