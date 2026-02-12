@@ -211,3 +211,7 @@
 51. 来源：`https://uniapp.dcloud.net.cn/tutorial/mp-weixin-plugin.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：小程序插件接入约束（`plugins/dynamicLib` 声明、`plugin://` 路径、分包插件限制与权限配置）
+
+52. 来源：`https://uniapp.dcloud.net.cn/tutorial/mp-weixin-plugin-dev.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：小程序插件开发约束（`plugin/plugin.json`、`--plugin` 编译参数、插件宏与产物保留策略）
