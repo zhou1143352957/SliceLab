@@ -171,3 +171,7 @@
 41. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/intro.html`
 - 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
 - 主题：鸿蒙接入前置条件（`HBuilderX 4.27+`、`vue3`）与专题化能力路线
+
+42. 来源：`https://uniapp.dcloud.net.cn/tutorial/harmony/runbuild.html`
+- 落地：`docs/06-多端差异处理.md`、`docs/08-常见问题.md`
+- 主题：鸿蒙运行与发行流程、DevEco 依赖、签名配置与构建排障策略
